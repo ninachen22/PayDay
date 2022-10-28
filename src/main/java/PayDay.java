@@ -21,7 +21,7 @@ public class PayDay {
             // ... etc for the other 2 fields
 
             // you need to change the parameters on the method to take the input!
-            String result = payday.pay();
+            String result = payday.pay("", 21.5, 10.0, 0.05);
 
             outputReport.append(result);
         }
@@ -37,9 +37,15 @@ public class PayDay {
      *   Notice the data type of each of the four.
      * @return a string of the form "Kris 215.00 10.75 204.25”
      */
-    private String pay() {
+    public String pay(String name, double hourly, double worked, double deduction) {
 
-        return "";
+        double grossPay = hourly * worked;
+        double deductionAmt = grossPay * deduction;
+        double netPay = grossPay - deductionAmt;
+
+        String payDay = name + grossPay + deductionAmt + netPay;
+
+        return String.format("%s %.2f %.2f %.2f", name, grossPay, deductionAmt, netPay);
     }
 
 
